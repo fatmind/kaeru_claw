@@ -2,8 +2,6 @@
 
 [中文](./README.zh-CN.md) | English
 
-![Uploading img_v3_02vd_80695301-8049-45d6-8dcd-fdfeefd2087g.jpg…]()
-
 **Turn your Mac mini into a traveling AI lobster — code from your iPad, anywhere.**
 
 > kaeru（かえる）is a tribute to the hit game *Travel Frog* — this time, the lobster hits the road.
