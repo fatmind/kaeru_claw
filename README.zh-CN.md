@@ -175,6 +175,14 @@ tailscale status  # 看对端是 direct 还是 relay
 
 ---
 
+## 大陆用户：代理 & 翻墙指南
+
+如果你在中国大陆，需要翻墙和 Tailscale 共存，看这篇专门指南：
+
+**→ [代理 & 翻墙指南](./proxy-guide.zh-CN.md)** — 推荐机场（JMS）、各平台代理客户端、TUN 模式与 Tailscale 的配合方法。
+
+---
+
 ## 致谢
 
 - [Tailscale](https://tailscale.com) — 让组网变得如此简单

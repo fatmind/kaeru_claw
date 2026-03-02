@@ -18,5 +18,7 @@ pr-chrome-extension-troubleshooting.md
 tailscale-remote-guide.md
 tailscale-test/
 
-# Images (screenshots are personal, not shipped)
-*.png
+# Personal screenshots (root level only)
+/clash-verge-tun-global.png
+/macmini-energy-settings.png
+/macmini-login-items.png

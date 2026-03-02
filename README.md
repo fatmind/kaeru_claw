@@ -175,6 +175,14 @@ The only manual step: start your dev server (since each project is different).
 
 ---
 
+## China Mainland Users: Proxy & VPN Guide
+
+If you're in China and need a proxy/VPN alongside Tailscale, check out our dedicated guide:
+
+**→ [Proxy & VPN Guide](./proxy-guide.md)** — recommended airport (JMS), proxy clients for Mac/iPad/Android, and how TUN mode works with Tailscale.
+
+---
+
 ## Credits
 
 - [Tailscale](https://tailscale.com) — Making networking stupidly simple
