@@ -1,16 +1,16 @@
 # 🦞 kaeru_claw
 
-**把你的 Mac mini 变成随身 AI 开发站，iPad 走到哪，写到哪。**
+**把你的 Mac mini 变成 AI 旅行龙虾 — iPad 走到哪，写到哪。**
 
 > kaeru（かえる）致敬旅行青蛙 — 这次轮到龙虾出门了。
+
+你的 Mac mini 放在家里 24 小时不休眠，iPad 通过 Tailscale 加密隧道随时连回来 — 写代码、跑 AI、看效果。特别适合在公司摸鱼时给自己搞开发，所有流量走 Tailscale 私有网络，完全不经过公司内网，避免任何安全管控和审计。
 
 ---
 
 ## 这是什么
 
 一套开箱即用的脚本和指南，帮你用 **Mac mini + iPad Air + Tailscale** 搭建安全的远程开发环境。
-
-Mac mini 放家里当永不休眠的开发主机，iPad 在公司、咖啡馆、地铁上通过加密隧道连回来 — 写代码、跑 AI、看效果，全部搞定。
 
 ```
 iPad Air (任何网络)                       Mac mini (家里)
@@ -53,7 +53,7 @@ chmod +x check.sh && ./check.sh
 - ✅ 配置「永不睡眠」+ 断电自启 + 网络唤醒
 - ✅ 开启 SSH 远程登录
 - ✅ 添加开机自启项（Tailscale、RustDesk）
-- ✅ 配置 CLI 代理快捷命令（可选，大陆用户需要）
+- ✅ 大陆用户自动配置 Homebrew 镜像源 + 终端代理快捷命令
 
 ### iPad Air（3 分钟）
 
@@ -64,6 +64,8 @@ chmod +x check.sh && ./check.sh
 2. **Termius** — SSH 终端
 3. **RustDesk** — 远程桌面（可选）
 
+> ⚠️ 大陆用户注意：Tailscale 和 RustDesk 可能不在中国区 App Store，需要用**美区 Apple ID** 下载。详见 [iPad 配置指南](./ipad-guide.md)。
+
 ---
 
 ## 软件清单
@@ -73,28 +75,6 @@ chmod +x check.sh && ./check.sh
 | [Tailscale](https://tailscale.com) | 虚拟专网隧道 | brew 安装 | App Store |
 | [RustDesk](https://rustdesk.com) | 远程桌面 | brew 安装 | App Store |
 | [Termius](https://termius.com) | SSH 客户端 | — | App Store |
-| [Clash Verge](https://github.com/clash-verge-rev/clash-verge-rev) | 代理翻墙（可选） | brew 安装 | App Store |
-
----
-
-## 大陆网络 & 翻墙共存
-
-如果你在中国大陆，翻墙工具和 Tailscale 会冲突（都用虚拟网卡）。解决方案：
-
-| 场景 | 翻墙工具设置 | Tailscale |
-|------|-------------|-----------|
-| 在家开发，需要翻墙 | TUN 模式（虚拟网卡） | 关闭 |
-| 外出远程，需要 Tailscale | 系统代理模式（关闭 TUN） | 开启 |
-
-**口诀：在家开 TUN，出门关 TUN 开 Tailscale。**
-
-不开 TUN 时，CLI 工具（npm/git/curl）走代理的备选方案：
-
-```bash
-# setup-mac.sh 会自动配置这些快捷命令
-proxy_on   # 开启终端代理
-proxy_off  # 关闭终端代理
-```
 
 ---
 
@@ -156,7 +136,9 @@ nc -z localhost 22 && echo "SSH 正常" || echo "SSH 没开"
 <details>
 <summary><b>Tailscale 和翻墙 VPN 冲突？</b></summary>
 
-Mac mini：翻墙切「系统代理」模式，关闭 TUN/虚拟网卡。Tailscale 保持开启。
+翻墙工具如果用了 TUN/虚拟网卡模式，会和 Tailscale 冲突（都抢虚拟网卡）。
+
+解决：翻墙工具切到「系统代理」模式（关闭 TUN），Tailscale 保持开启。CLI 工具用 `proxy_on` 走代理。
 
 iPad（iOS 只能同时开一个 VPN）：需要远程时开 Tailscale，不需要时切回翻墙。
 </details>

@@ -139,30 +139,26 @@ fi
 
 echo ""
 
-# ── Clash Verge（可选）──
-echo -e "  ${BLUE}▸ Clash Verge（可选，大陆用户）${NC}"
+# ── Homebrew 镜像 ──
+echo -e "  ${BLUE}▸ Homebrew 镜像（大陆用户）${NC}"
 
-if [ -d "/Applications/Clash Verge.app" ]; then
-    ok "Clash Verge 已安装"
-    if pgrep -f "Clash Verge" &>/dev/null || pgrep -f "clash-verge" &>/dev/null; then
-        ok "Clash Verge 正在运行"
-    else
-        warn "Clash Verge 未运行"
-    fi
+if [ -f "$HOME/.zshrc" ] && grep -q "kaeru_claw Homebrew 镜像" "$HOME/.zshrc"; then
+    ok "Homebrew 清华镜像已配置"
 else
-    warn "Clash Verge 未安装（大陆用户可选）"
+    warn "Homebrew 镜像未配置（海外用户可忽略）"
+    dim "运行 setup-mac.sh 选择大陆地区可自动配置"
 fi
 
 echo ""
 
 # ── 代理快捷命令 ──
-echo -e "  ${BLUE}▸ 终端代理快捷命令${NC}"
+echo -e "  ${BLUE}▸ 终端代理快捷命令（大陆用户）${NC}"
 
 if [ -f "$HOME/.zshrc" ] && grep -q "kaeru_claw 代理快捷命令" "$HOME/.zshrc"; then
     ok "proxy_on / proxy_off 已配置"
 else
-    warn "代理快捷命令未配置"
-    dim "运行 setup-mac.sh 可自动配置"
+    warn "代理快捷命令未配置（海外用户可忽略）"
+    dim "运行 setup-mac.sh 选择大陆地区可自动配置"
 fi
 
 echo ""

@@ -4,9 +4,25 @@
 
 ---
 
+## ⚠️ 大陆用户必读
+
+Tailscale 和 RustDesk **不在中国区 App Store** 上架。你需要一个**美区 Apple ID** 才能下载。
+
+如果还没有美区账号：
+1. 在 [appleid.apple.com](https://appleid.apple.com) 注册一个新 Apple ID
+2. 国家/地区选 **United States**
+3. 付款方式选 **None**
+4. 地址可以填美国免税州地址（如 Oregon）
+5. 注册完成后，在 iPad 的 App Store → 头像 → 退出登录 → 用美区账号登录
+6. 下载完所需 App 后，可以切回中国区账号
+
+> Termius 在中国区 App Store 也有，可以用中国区账号下载。
+
+---
+
 ## 第一步：安装 App（3 个）
 
-从 App Store 搜索安装：
+用**美区 Apple ID** 登录 App Store 后搜索安装：
 
 | App | 用途 | 价格 |
 |-----|------|------|
@@ -51,15 +67,12 @@
 ### 连上之后能做什么
 
 ```bash
-# 查看 Mac mini 状态
-uptime
+# 远程执行 shell
+ls -la
 
 # 启动开发服务器（记得加 0.0.0.0）
 cd ~/your-project
 npm run dev -- -H 0.0.0.0
-
-# 查看 Tailscale 状态
-tailscale status
 ```
 
 ---
@@ -85,7 +98,7 @@ tailscale status
 
 ---
 
-## 大陆用户注意
+## 大陆用户：Tailscale 与翻墙 VPN 切换
 
 iPad 上 Tailscale 和翻墙工具都用 VPN 通道，iOS 只能同时开一个 VPN。
 
