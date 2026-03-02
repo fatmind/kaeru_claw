@@ -1,134 +1,136 @@
-# iPad Air 配置指南
+# iPad Air Setup Guide
 
-> 大约 3 分钟完成，全部在 iPad 上操作。
+[中文](./ipad-guide.zh-CN.md) | English
 
----
-
-## ⚠️ 大陆用户必读
-
-Tailscale 和 RustDesk **不在中国区 App Store** 上架。你需要一个**美区 Apple ID** 才能下载。
-
-如果还没有美区账号：
-1. 在 [appleid.apple.com](https://appleid.apple.com) 注册一个新 Apple ID
-2. 国家/地区选 **United States**
-3. 付款方式选 **None**
-4. 地址可以填美国免税州地址（如 Oregon）
-5. 注册完成后，在 iPad 的 App Store → 头像 → 退出登录 → 用美区账号登录
-6. 下载完所需 App 后，可以切回中国区账号
-
-> Termius 在中国区 App Store 也有，可以用中国区账号下载。
+> About 3 minutes. Everything is done on the iPad.
 
 ---
 
-## 第一步：安装 App（3 个）
+## ⚠️ China Mainland Users
 
-用**美区 Apple ID** 登录 App Store 后搜索安装：
+Tailscale and RustDesk are **not available on the China App Store**. You need a **US Apple ID** to download them.
 
-| App | 用途 | 价格 |
-|-----|------|------|
-| **Tailscale** | 建立加密隧道，连回 Mac mini | 免费 |
-| **Termius** | SSH 终端，跑命令 | 免费 |
-| **RustDesk** | 远程桌面，看 Mac 屏幕（可选） | 免费 |
+If you don't have one yet:
+1. Go to [appleid.apple.com](https://appleid.apple.com) and create a new Apple ID
+2. Set Country/Region to **United States**
+3. Payment method: **None**
+4. Use any US address (e.g. a tax-free state like Oregon)
+5. On iPad: App Store → tap profile → Sign Out → Sign in with the US account
+6. Download the apps, then switch back to your China account
 
----
-
-## 第二步：配置 Tailscale
-
-1. 打开 Tailscale App
-2. 点击 **Sign in** → 用和 Mac mini **同一个账号**登录
-3. 允许 VPN 配置弹窗
-4. 等待连接，看到设备列表中 Mac mini 显示**绿点** = 成功
-
-> 必须用同一个 Tailscale 账号登录，两台设备才能互通。
-
-记下 Mac mini 的 Tailscale IP（100.x.x.x 格式），后面要用。
-
-查看方式：Tailscale App 设备列表里点击 Mac mini 即可看到。
+> Termius is available on the China App Store — no US account needed.
 
 ---
 
-## 第三步：配置 Termius（SSH 终端）
+## Step 1: Install Apps (3 total)
 
-1. 打开 Termius → 点击 **+** → **New Host**
-2. 填写：
+Search and install from the App Store:
 
-| 字段 | 值 |
-|------|-----|
-| Alias | 随便起名，比如 `Mac mini` |
-| Hostname | Mac mini 的 Tailscale IP（如 `100.65.176.14`） |
+| App | Purpose | Price |
+|-----|---------|-------|
+| **Tailscale** | Encrypted tunnel back to Mac mini | Free |
+| **Termius** | SSH terminal | Free |
+| **RustDesk** | Remote desktop (optional) | Free |
+
+---
+
+## Step 2: Set Up Tailscale
+
+1. Open Tailscale
+2. Tap **Sign in** → log in with the **same account** as your Mac mini
+3. Allow the VPN configuration prompt
+4. Wait for connection — Mac mini shows a **green dot** = success
+
+> Both devices must be logged into the same Tailscale account.
+
+Note your Mac mini's Tailscale IP (100.x.x.x format) — you'll need it next.
+
+How to find it: tap on your Mac mini in the Tailscale device list.
+
+---
+
+## Step 3: Set Up Termius (SSH Terminal)
+
+1. Open Termius → tap **+** → **New Host**
+2. Fill in:
+
+| Field | Value |
+|-------|-------|
+| Alias | Any name, e.g. `Mac mini` |
+| Hostname | Mac mini's Tailscale IP (e.g. `100.65.176.14`) |
 | Port | `22` |
-| Username | Mac mini 的用户名（如 `shijian`） |
-| Password | Mac mini 的开机密码 |
+| Username | Your Mac mini username (e.g. `shijian`) |
+| Password | Your Mac mini login password |
 
-3. 点击 **Save**，然后点击连接
-4. 首次连接会提示信任主机指纹，点 **Continue**
-5. 看到命令行提示符 = 成功
+3. Tap **Save**, then tap to connect
+4. First time: trust the host fingerprint → tap **Continue**
+5. See a command prompt = success
 
-### 连上之后能做什么
+### What You Can Do
 
 ```bash
-# 远程执行 shell
+# Run shell commands remotely
 ls -la
 
-# 启动开发服务器（记得加 0.0.0.0）
+# Start a dev server (remember 0.0.0.0)
 cd ~/your-project
 npm run dev -- -H 0.0.0.0
 ```
 
 ---
 
-## 第四步：配置 RustDesk（可选，远程桌面）
+## Step 4: Set Up RustDesk (Optional, Remote Desktop)
 
-1. 打开 RustDesk → 输入 Mac mini 的 **Tailscale IP**（推荐）
-2. 点击连接 → 输入 RustDesk 密码（在 Mac mini 的 RustDesk 设置中查看）
-3. 看到 Mac mini 桌面 = 成功
+1. Open RustDesk → enter Mac mini's **Tailscale IP** (recommended)
+2. Connect → enter the RustDesk password (check Mac mini's RustDesk settings)
+3. See Mac mini desktop = success
 
-> 优先用 Tailscale IP 连接，数据走加密隧道不经公网。
+> Always use the Tailscale IP — traffic stays in the encrypted tunnel.
 
 ---
 
-## 日常使用流程
+## Daily Workflow
 
 ```
-1. 打开 iPad 上的 Tailscale → 确认 Mac mini 在线（绿点）
-2. 看网页效果 → Safari 输入 http://<Mac-IP>:3000
-3. 跑命令     → Termius 连 SSH
-4. 看桌面     → RustDesk 连桌面
+1. Open Tailscale on iPad → confirm Mac mini is online (green dot)
+2. Preview web UI  → Safari: http://<Mac-IP>:3000
+3. Run commands    → Termius SSH
+4. GUI access      → RustDesk
 ```
 
 ---
 
-## 大陆用户：Tailscale 与翻墙 VPN 切换
+## China Users: Tailscale vs Proxy VPN
 
-iPad 上 Tailscale 和翻墙工具都用 VPN 通道，iOS 只能同时开一个 VPN。
+On iPad, both Tailscale and proxy tools use the VPN slot. iOS only allows one VPN at a time.
 
-**解决方案：按需切换。**
+**Solution: switch as needed.**
 
-| 需要做什么 | 开哪个 |
-|-----------|--------|
-| 远程访问 Mac mini | Tailscale |
-| 翻墙上网 | 翻墙工具 |
+| Need to... | Turn on |
+|------------|---------|
+| Access Mac mini remotely | Tailscale |
+| Browse blocked sites | Proxy tool |
 
-切换方法：设置 → VPN → 切换开关。
+How to switch: Settings → VPN → toggle.
 
 ---
 
-## 常见问题
+## Troubleshooting
 
-### 连不上 Mac mini？
+### Can't connect to Mac mini?
 
-1. Tailscale 是否显示 Connected？
-2. Mac mini 是否在线（绿点）？→ 不在线说明 Mac mini 端 Tailscale 没开或网络有问题
-3. 能 ping 通但服务不响应？→ 检查开发服务器是否监听了 `0.0.0.0`
+1. Is Tailscale showing "Connected"?
+2. Is Mac mini online (green dot)? → If not, check if Tailscale is running on the Mac
+3. Can ping but service not responding? → Check if dev server is listening on `0.0.0.0`
 
-### SSH 连接超时？
+### SSH connection timeout?
 
-- 检查 Mac mini 的 SSH 是否开启（setup-mac.sh 会自动开）
-- 检查 Tailscale IP 是否正确
-- 尝试在 Tailscale App 里 ping Mac mini
+- Check if SSH is enabled on Mac mini (setup-mac.sh enables it automatically)
+- Verify the Tailscale IP is correct
+- Try pinging Mac mini from the Tailscale app
 
-### RustDesk 连不上？
+### RustDesk won't connect?
 
-- 确认 Mac mini 上 RustDesk 正在运行
-- 确认用的是 Tailscale IP 而不是 RustDesk ID
-- Mac mini 上 RustDesk 需要「辅助功能」「输入监控」「屏幕录制」权限
+- Confirm RustDesk is running on Mac mini
+- Use the Tailscale IP, not the RustDesk ID
+- Mac mini needs Accessibility, Input Monitoring, and Screen Recording permissions for RustDesk
