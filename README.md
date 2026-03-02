@@ -2,6 +2,10 @@
 
 [中文](./README.zh-CN.md) | English
 
+<p align="center">
+  <img src="./images/banner.png" alt="kaeru_claw — Turn your Mac mini into a traveling AI lobster" width="800">
+</p>
+
 **Turn your Mac mini into a traveling AI lobster — code from your iPad, anywhere.**
 
 > kaeru（かえる）is a tribute to the hit game *Travel Frog* — this time, the lobster hits the road.

@@ -2,6 +2,10 @@
 
 中文 | [English](./README.md)
 
+<p align="center">
+  <img src="./images/banner.png" alt="kaeru_claw — 把你的 Mac mini 变成 AI 旅行龙虾" width="800">
+</p>
+
 **把你的 Mac mini 变成 AI 旅行龙虾 — iPad 走到哪，写到哪。**
 
 > kaeru（かえる）致敬旅行青蛙 — 这次轮到龙虾出门了。
