@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+._*
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment / secrets
+.env*
+!.env.example
+
+# Personal notes (not part of the open-source project)
+openclaw-field-guide.md
+pr-chrome-extension-troubleshooting.md
+tailscale-remote-guide.md
+tailscale-test/
+
+# Images (screenshots are personal, not shipped)
+*.png
